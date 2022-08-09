@@ -1,15 +1,12 @@
 package com.github.shenziq1.myrpg
 
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.Scaling
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 import ktx.app.KtxScreen
 import ktx.app.clearScreen
 import ktx.assets.disposeSafely
-import ktx.assets.toInternalFile
-import ktx.graphics.use
 import ktx.log.logger
 import ktx.scene2d.actors
 import ktx.scene2d.image
@@ -32,7 +29,6 @@ class GameScreen : KtxScreen {
             }
         }
         super.show()
-
     }
 
     override fun resize(width: Int, height: Int) {
@@ -40,18 +36,16 @@ class GameScreen : KtxScreen {
         stage.viewport.update(width, height, true)
     }
 
-    
     override fun render(delta: Float) {
         clearScreen(red = 0.7f, green = 0.7f, blue = 0.7f)
         with(stage){
             act(delta)
             draw()
         }
-
-
     }
 
     override fun dispose() {
-
+        stage.disposeSafely()
+        texture.disposeSafely()
     }
 }
